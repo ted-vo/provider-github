@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+pluginDir=".semrel/$(go env GOOS)_$(go env GOARCH)/provider-github/2.0.0/"
+[[ ! -d "$pluginDir" ]] && {
+  echo "creating $pluginDir"
+  mkdir -p $pluginDir
+}
+
+go build -o $pluginDir/provider-github ./cmd/provider-github
